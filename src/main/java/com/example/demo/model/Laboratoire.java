@@ -1,0 +1,53 @@
+package com.example.demo.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Laboratoire {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+    private String nomLabo;
+    
+    @ManyToOne
+    private Etablissement etablissement;
+    
+    
+    // Constructeurs, getters et setters
+
+	public Laboratoire() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNomLabo() {
+		return nomLabo;
+	}
+
+	public void setNomLabo(String nomLabo) {
+		this.nomLabo = nomLabo;
+	}
+
+	public Etablissement getEtablissement() {
+		return etablissement;
+	}
+
+	public void setEtablissement(Etablissement etablissement) {
+		this.etablissement = etablissement;
+	}
+    
+        
+}
