@@ -11,12 +11,18 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Setter @Getter
+@AllArgsConstructor @NoArgsConstructor
 public class Membre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     
     private String nom;
     private String prenom;
@@ -34,84 +40,11 @@ public class Membre {
     @ManyToOne
     private Laboratoire laboratoire;
     
+	//member has many ucaRech
     @ManyToMany(mappedBy = "membres")
     private List<UcaRech> ucaRechs;
     
     @OneToMany(mappedBy = "membre")
     private List<ExpressionBesoin> expressionsBesoin;
-    
-    
-    // Constructeurs, getters et setters
 
-	public Membre() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public boolean isDirector() {
-		return isDirector;
-	}
-
-	public void setDirector(boolean isDirector) {
-		this.isDirector = isDirector;
-	}
-
-	public Laboratoire getLaboratoire() {
-		return laboratoire;
-	}
-
-	public void setLaboratoire(Laboratoire laboratoire) {
-		this.laboratoire = laboratoire;
-	}
-
-	public List<UcaRech> getUcaRechs() {
-		return ucaRechs;
-	}
-
-	public void setUcaRechs(List<UcaRech> ucaRechs) {
-		this.ucaRechs = ucaRechs;
-	}
-
-	public List<ExpressionBesoin> getExpressionsBesoin() {
-		return expressionsBesoin;
-	}
-
-	public void setExpressionsBesoin(List<ExpressionBesoin> expressionsBesoin) {
-		this.expressionsBesoin = expressionsBesoin;
-	}
-    
-    
-    
 }

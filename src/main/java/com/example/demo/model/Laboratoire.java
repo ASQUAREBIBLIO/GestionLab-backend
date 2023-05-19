@@ -13,7 +13,7 @@ import jakarta.persistence.OneToMany;
 public class Laboratoire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     
     private String nomLabo;
     

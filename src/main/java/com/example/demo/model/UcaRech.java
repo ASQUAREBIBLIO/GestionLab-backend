@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class UcaRech {
     private String source;
     private double budget;
     
-    @ManyToMany(mappedBy = "ucaRechs")
+    @ManyToMany
     private List<Membre> membres;
     
     // Constructeurs, getters et setters
