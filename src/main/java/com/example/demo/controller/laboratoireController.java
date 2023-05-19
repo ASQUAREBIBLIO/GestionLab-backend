@@ -29,6 +29,11 @@ public class laboratoireController {
         return new ResponseEntity<>(labService.getLaboratoires(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Laboratoire> getLaboById(@PathVariable Integer id){
+        return new ResponseEntity<>(labService.getLaboById(id), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Laboratoire> addLaboratoire(@RequestBody Laboratoire labo){
         return new ResponseEntity<>(labService.addLaboratoire(labo), HttpStatus.CREATED);

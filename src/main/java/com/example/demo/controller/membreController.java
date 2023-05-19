@@ -30,6 +30,11 @@ public class membreController {
         return new ResponseEntity<>(membres, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Membre> getMembreById(@PathVariable Integer id){
+        return new ResponseEntity<>(memService.getMembreById(id), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Membre> addMember(@RequestBody Membre membre){
         Membre newMembre = memService.addMembre(membre);

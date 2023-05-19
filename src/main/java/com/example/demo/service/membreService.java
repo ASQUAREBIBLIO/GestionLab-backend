@@ -19,7 +19,7 @@ public class membreService {
         return memRepo.findAll();
     }
 
-    public Membre getMembre(Integer id){
+    public Membre getMembreById(Integer id){
         return memRepo.findById(id).orElse(null);
     }
 
