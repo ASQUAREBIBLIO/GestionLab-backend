@@ -8,8 +8,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Setter @Getter
+@AllArgsConstructor @NoArgsConstructor
 public class Laboratoire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,36 +28,6 @@ public class Laboratoire {
     
     @OneToMany(mappedBy="laboratoire")
 	private Set<Membre> membres;
-    // Constructeurs, getters et setters
-
-	public Laboratoire() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNomLabo() {
-		return nomLabo;
-	}
-
-	public void setNomLabo(String nomLabo) {
-		this.nomLabo = nomLabo;
-	}
-
-	public Etablissement getEtablissement() {
-		return etablissement;
-	}
-
-	public void setEtablissement(Etablissement etablissement) {
-		this.etablissement = etablissement;
-	}
     
         
 }
