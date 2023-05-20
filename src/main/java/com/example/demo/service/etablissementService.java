@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.etablissementRepository;
 
-import jakarta.transaction.Transactional;
-
 import com.example.demo.model.Etablissement;
 
 @Service
