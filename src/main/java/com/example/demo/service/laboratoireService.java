@@ -1,21 +1,19 @@
 package com.example.demo.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.laboratoireRepository;
-import com.example.demo.repository.membreRepository;
 import com.example.demo.model.Laboratoire;
-import com.example.demo.model.Membre;
 
 @Service
 public class laboratoireService {
 
     @Autowired
     private laboratoireRepository laboRepo;
-    private membreRepository memRepo;
 
     public List<Laboratoire> getLaboratoires(){
         return laboRepo.findAll();
@@ -40,9 +38,7 @@ public class laboratoireService {
     public boolean deleteLaboratoire(Integer id){
         Laboratoire lab  = laboRepo.findById(id).get();
         if(laboRepo.existsById(id)) {
-            List<Membre> membres = lab.getMembres();
-            for(Membre membre : membres) memRepo.delete(membre);
-            laboRepo.deleteById(id);
+            laboRepo.delete(lab);
             return true;
         } else return false; 
     }

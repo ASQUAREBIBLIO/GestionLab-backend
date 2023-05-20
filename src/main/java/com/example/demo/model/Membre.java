@@ -2,6 +2,9 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +43,7 @@ public class Membre {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "laboratoire_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Laboratoire laboratoire;
     
 	//member has many ucaRech

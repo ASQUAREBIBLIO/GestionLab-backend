@@ -2,6 +2,9 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,6 +31,7 @@ public class Laboratoire {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "etablissement_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Etablissement etablissement;
     
     @OneToMany(mappedBy="laboratoire", cascade = CascadeType.ALL, orphanRemoval = true)
