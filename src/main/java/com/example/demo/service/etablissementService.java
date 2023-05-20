@@ -42,8 +42,8 @@ public class etablissementService {
     public boolean deleteEtablissement(Integer id){
         Etablissement etabToDelete = etablissementRepo.findById(id).get();
         if(etablissementRepo.existsById(id)){
-            for(Laboratoire lab : etabToDelete.getLaboratoires()) labRepo.delete(lab);
-            etablissementRepo.deleteById(id);
+            etabToDelete.getLaboratoires().clear();
+            etablissementRepo.delete(etabToDelete);
             return true;
         } else return false;
     }
