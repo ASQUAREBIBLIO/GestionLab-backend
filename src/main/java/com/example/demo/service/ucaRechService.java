@@ -14,16 +14,16 @@ public class ucaRechService {
     @Autowired
     private ucaRechRepository ucaRechRepository;
 
-    public UcaRech createUcaRech(UcaRech ucaRech) {
-        return ucaRechRepository.save(ucaRech);
-    }
-
     public List<UcaRech> getAllUcaRechs() {
         return ucaRechRepository.findAll();
     }
 
     public UcaRech getUcaRechById(Integer id) {
         return ucaRechRepository.findById(id).orElse(null);
+    }
+
+    public UcaRech createUcaRech(UcaRech ucaRech) {
+        return ucaRechRepository.save(ucaRech);
     }
 
     public UcaRech updateUcaRech(Integer id, UcaRech updatedUcaRech) {
