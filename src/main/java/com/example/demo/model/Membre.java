@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,7 +38,8 @@ public class Membre {
     		)
     private List<Projet> projets;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "laboratoire_id")
     private Laboratoire laboratoire;
     
 	//member has many ucaRech

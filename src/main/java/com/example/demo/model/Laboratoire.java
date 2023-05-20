@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Laboratoire {
     @JoinColumn (name = "etablissement_id")
     private Etablissement etablissement;
     
-    @OneToMany(mappedBy="laboratoire")
+    @OneToMany(mappedBy="laboratoire", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Membre> membres;
     
         
