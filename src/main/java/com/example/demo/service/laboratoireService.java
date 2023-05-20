@@ -31,6 +31,8 @@ public class laboratoireService {
         Laboratoire exLabo = laboRepo.findById(id).orElse(null);
         if(exLabo != null){
             exLabo.setNomLabo(lab.getNomLabo());
+            exLabo.setEtablissement(lab.getEtablissement());
+            exLabo.setMembres(lab.getMembres());
             return laboRepo.save(exLabo);
         } else return null;
     }

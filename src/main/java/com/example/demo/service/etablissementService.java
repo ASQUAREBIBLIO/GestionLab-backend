@@ -33,6 +33,7 @@ public class etablissementService {
             exEtablissement.setNom(etablissement.getNom());
             exEtablissement.setAdresse(etablissement.getAdresse());
             exEtablissement.setVille(etablissement.getVille());
+            exEtablissement.setLaboratoires(etablissement.getLaboratoires());
             return etablissementRepo.save(exEtablissement);
         } else return null;
     }
@@ -44,4 +45,5 @@ public class etablissementService {
             return true;
         } else return false;
     }
+
 }

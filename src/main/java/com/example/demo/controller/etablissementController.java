@@ -56,5 +56,4 @@ public class etablissementController {
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }

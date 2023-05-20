@@ -56,4 +56,5 @@ public class laboratoireController {
         else 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
 }
