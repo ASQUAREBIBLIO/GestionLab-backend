@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -35,10 +36,10 @@ public class Membre {
     
     @ManyToMany 
     @JoinTable (
-    		name = "DotationProjet",
-    		joinColumns = @JoinColumn(name = "id"),
-    		inverseJoinColumns = @JoinColumn(name ="idProjet")
-    		)
+        name = "DotationProjet",
+        joinColumns = @JoinColumn(name = "id"),
+        inverseJoinColumns = @JoinColumn(name ="idProjet")
+    )
     private List<Projet> projets;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,7 +48,7 @@ public class Membre {
     private Laboratoire laboratoire;
     
 	//member has many ucaRech
-    @ManyToMany(mappedBy = "membres")
+    @ManyToMany(mappedBy = "membres", cascade = CascadeType.ALL)
     private List<UcaRech> ucaRechs;
     
     @OneToMany(mappedBy = "membre")

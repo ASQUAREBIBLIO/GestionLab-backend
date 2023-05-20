@@ -10,12 +10,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Setter @Getter
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
 public class Etablissement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +26,8 @@ public class Etablissement {
     
     @OneToMany(mappedBy = "etablissement", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Laboratoire> laboratoires;
+
+    public Etablissement(){
+        super();
+    }
 }

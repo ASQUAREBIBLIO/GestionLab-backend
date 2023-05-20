@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,13 +19,13 @@ import lombok.Setter;
 public class UcaRech {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     
     private Date annee;
     private String source;
     private double budget;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Membre> membres;
 }
 
