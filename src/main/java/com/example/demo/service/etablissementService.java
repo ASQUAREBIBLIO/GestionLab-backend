@@ -7,15 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.etablissementRepository;
 import com.example.demo.repository.laboratoireRepository;
+
+import jakarta.transaction.Transactional;
+
 import com.example.demo.model.Etablissement;
-import com.example.demo.model.Laboratoire;
 
 @Service
 public class etablissementService {
     
     @Autowired
     private etablissementRepository etablissementRepo;
-    private laboratoireRepository labRepo;
 
     public List<Etablissement> getEtablissements(){
         return etablissementRepo.findAll();
@@ -39,6 +40,7 @@ public class etablissementService {
         } else return null;
     }
 
+    @Transactional
     public boolean deleteEtablissement(Integer id){
         Etablissement etabToDelete = etablissementRepo.findById(id).get();
         if(etablissementRepo.existsById(id)){
