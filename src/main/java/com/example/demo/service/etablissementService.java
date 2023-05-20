@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.etablissementRepository;
-import com.example.demo.repository.laboratoireRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -40,7 +39,6 @@ public class etablissementService {
         } else return null;
     }
 
-    @Transactional
     public boolean deleteEtablissement(Integer id){
         Etablissement etabToDelete = etablissementRepo.findById(id).get();
         if(etablissementRepo.existsById(id)){
