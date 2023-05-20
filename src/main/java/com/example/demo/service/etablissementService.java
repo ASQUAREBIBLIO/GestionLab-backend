@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.etablissementRepository;
+import com.example.demo.repository.laboratoireRepository;
 import com.example.demo.model.Etablissement;
+import com.example.demo.model.Laboratoire;
 
 @Service
 public class etablissementService {
     
     @Autowired
     private etablissementRepository etablissementRepo;
+    private laboratoireRepository labRepo;
 
     public List<Etablissement> getEtablissements(){
         return etablissementRepo.findAll();
@@ -37,7 +40,9 @@ public class etablissementService {
     }
 
     public boolean deleteEtablissement(Integer id){
+        Etablissement etabToDelete = etablissementRepo.findById(id).get();
         if(etablissementRepo.existsById(id)){
+            for(Laboratoire lab : etabToDelete.getLaboratoires()) labRepo.delete(lab);
             etablissementRepo.deleteById(id);
             return true;
         } else return false;

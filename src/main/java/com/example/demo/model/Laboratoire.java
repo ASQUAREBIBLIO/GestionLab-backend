@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +27,7 @@ public class Laboratoire {
     private Etablissement etablissement;
     
     @OneToMany(mappedBy="laboratoire")
-	private Set<Membre> membres;
+	private List<Membre> membres;
     
         
 }
