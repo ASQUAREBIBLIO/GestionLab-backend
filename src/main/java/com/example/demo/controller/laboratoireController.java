@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Laboratoire;
+import com.example.demo.model.Membre;
 import com.example.demo.service.laboratoireService;
 
 import lombok.AllArgsConstructor;
@@ -56,6 +57,11 @@ public class laboratoireController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         else 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/{id}/membres")
+    public ResponseEntity<List<Membre>> getAllMembresOfLaboratoire(@PathVariable String nomLabo){
+        return new ResponseEntity<>(_laboratoireService.getAllMembresOfLaboratoire(nomLabo), HttpStatus.OK);
     }
 
 }

@@ -10,6 +10,7 @@ import com.example.demo.repository.laboratoireRepository;
 import lombok.AllArgsConstructor;
 
 import com.example.demo.model.Laboratoire;
+import com.example.demo.model.Membre;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +20,11 @@ public class laboratoireService {
 
     public List<Laboratoire> getLaboratoires(){
         return _laboratoireRepository.findAll();
+    }
+
+    public List<Membre> getAllMembresOfLaboratoire(String laboNom){
+        Laboratoire laboratoire = _laboratoireRepository.getLaboratoireByNomLabo(laboNom);
+        return laboratoire.getMembres();
     }
 
     public Laboratoire getLaboById(Integer id){
