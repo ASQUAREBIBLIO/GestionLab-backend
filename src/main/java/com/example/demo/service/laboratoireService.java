@@ -3,44 +3,46 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.laboratoireRepository;
+
+import lombok.AllArgsConstructor;
+
 import com.example.demo.model.Laboratoire;
 
 @Service
+@AllArgsConstructor
 public class laboratoireService {
 
-    @Autowired
-    private laboratoireRepository laboRepo;
+    private laboratoireRepository _laboratoireRepository;
 
     public List<Laboratoire> getLaboratoires(){
-        return laboRepo.findAll();
+        return _laboratoireRepository.findAll();
     }
 
     public Laboratoire getLaboById(Integer id){
-        return laboRepo.findById(id).orElse(null);
+        return _laboratoireRepository.findById(id).orElse(null);
     }
 
     public Laboratoire addLaboratoire(Laboratoire lab){
-        return laboRepo.save(lab);
+        return _laboratoireRepository.save(lab);
     }
     
     public Laboratoire updateLaboratoire(Laboratoire lab, Integer id){
-        Laboratoire exLabo = laboRepo.findById(id).orElse(null);
+        Laboratoire exLabo = _laboratoireRepository.findById(id).orElse(null);
         if(exLabo != null){
             exLabo.setNomLabo(lab.getNomLabo());
             exLabo.setEtablissement(lab.getEtablissement());
             exLabo.setMembres(lab.getMembres());
-            return laboRepo.save(exLabo);
+            return _laboratoireRepository.save(exLabo);
         } else return null;
     }
 
     public boolean deleteLaboratoire(Integer id){
-        Laboratoire lab  = laboRepo.findById(id).get();
-        if(laboRepo.existsById(id)) {
-            laboRepo.delete(lab);
+        Laboratoire lab  = _laboratoireRepository.findById(id).get();
+        if(_laboratoireRepository.existsById(id)) {
+            _laboratoireRepository.delete(lab);
             return true;
         } else return false; 
     }

@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,31 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Laboratoire;
 import com.example.demo.service.laboratoireService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
+@AllArgsConstructor
 @RequestMapping("/laboratoires")
 public class laboratoireController {
 
-    @Autowired
-    private laboratoireService labService;
+    private laboratoireService _laboratoireService;
 
     @GetMapping
     public ResponseEntity<List<Laboratoire>> getLaboratoires(){
-        return new ResponseEntity<>(labService.getLaboratoires(), HttpStatus.OK);
+        return new ResponseEntity<>(_laboratoireService.getLaboratoires(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Laboratoire> getLaboById(@PathVariable Integer id){
-        return new ResponseEntity<>(labService.getLaboById(id), HttpStatus.OK);
+        return new ResponseEntity<>(_laboratoireService.getLaboById(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Laboratoire> addLaboratoire(@RequestBody Laboratoire labo){
-        return new ResponseEntity<>(labService.addLaboratoire(labo), HttpStatus.CREATED);
+        return new ResponseEntity<>(_laboratoireService.addLaboratoire(labo), HttpStatus.CREATED);
     }
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<Laboratoire> updateLaboratoire(@RequestBody Laboratoire labo, @PathVariable Integer id){
-        Laboratoire newLabo = labService.updateLaboratoire(labo, id);
+        Laboratoire newLabo = _laboratoireService.updateLaboratoire(labo, id);
         if(newLabo != null)
             return new ResponseEntity<>(newLabo, HttpStatus.OK);
         else
@@ -50,7 +51,7 @@ public class laboratoireController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Laboratoire> deleteLaboratoire(@PathVariable Integer id){
-        boolean laboToDelete = labService.deleteLaboratoire(id);
+        boolean laboToDelete = _laboratoireService.deleteLaboratoire(id);
         if(laboToDelete)
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         else 
