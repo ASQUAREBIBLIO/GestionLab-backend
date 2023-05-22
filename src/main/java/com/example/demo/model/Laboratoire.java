@@ -28,7 +28,7 @@ public class Laboratoire {
     
     private String nomLabo;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn (name = "etablissement_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Etablissement etablissement;
