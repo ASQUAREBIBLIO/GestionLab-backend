@@ -1,47 +1,67 @@
 package com.example.demo.service;
 
+import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.membreRepository;
+import com.example.demo.repository.ucaRechRepository;
+
+import lombok.AllArgsConstructor;
 
 import com.example.demo.model.Membre;
+import com.example.demo.model.UcaRech;
 
 @Service
+@AllArgsConstructor
 public class membreService {
 
-    @Autowired
-    private membreRepository memRepo;
+    private membreRepository _membreRepository;
+    private ucaRechRepository _ucaRechRepository;
 
     public List<Membre> getAllMembres(){
-        return memRepo.findAll();
+        return _membreRepository.findAll();
     }
 
     public Membre getMembreById(Integer id){
-        return memRepo.findById(id).orElse(null);
+        return _membreRepository.findById(id).orElse(null);
     }
 
     public Membre addMembre(Membre membre){
-        return memRepo.save(membre);
+        return _membreRepository.save(membre);
     }
 
     public Membre updateMembre(Membre membre, Integer id){
-        Membre exMembre = memRepo.findById(id).orElse(null);
+        Membre exMembre = _membreRepository.findById(id).orElse(null);
         if(exMembre != null) {
            exMembre.setNom(membre.getNom());
            exMembre.setPrenom(membre.getPrenom());
+           exMembre.setPassword(membre.getPassword());
            exMembre.setEmail(membre.getEmail());
            exMembre.setDirector(membre.isDirector());
            exMembre.setUcaRechs(membre.getUcaRechs());
-           return memRepo.save(exMembre);
+           return _membreRepository.save(exMembre);
         } else return null;
+    }
+
+    public void addUcaRechToMembre(String email, Date annee){
+        UcaRech ucaDotation = _ucaRechRepository.findByAnnee(annee);
+        Membre membre = _membreRepository.findByEmail(email);
+        if(membre.getUcaRechs() != null){
+            membre.getUcaRechs().add(ucaDotation);
+            ucaDotation.getMembres().add(membre);
+        }
+    }
+
+    public void setMembreAsDirector(String email){
+        Membre membre = _membreRepository.findByEmail(email);
+        membre.setDirector(true);
     }
     
     public boolean deleteMembre(Integer id){
-        if(memRepo.existsById(id)){
-            memRepo.deleteById(id);
+        if(_membreRepository.existsById(id)){
+            _membreRepository.deleteById(id);
             return true;
         } else return false;
     }

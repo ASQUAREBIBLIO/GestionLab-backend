@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,6 +33,7 @@ public class Membre {
     
     private String nom;
     private String prenom;
+    private String password;
     private String email;
     private boolean isDirector;
     
@@ -49,6 +52,7 @@ public class Membre {
     
 	//member has many ucaRech
     @ManyToMany(mappedBy = "membres", cascade = CascadeType.ALL)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<UcaRech> ucaRechs;
     
     @OneToMany(mappedBy = "membre")
