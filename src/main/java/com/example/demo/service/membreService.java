@@ -34,6 +34,7 @@ public class membreService {
            exMembre.setPrenom(membre.getPrenom());
            exMembre.setEmail(membre.getEmail());
            exMembre.setDirector(membre.isDirector());
+           exMembre.setUcaRechs(membre.getUcaRechs());
            return memRepo.save(exMembre);
         } else return null;
     }
