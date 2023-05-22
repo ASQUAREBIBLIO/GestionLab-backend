@@ -18,7 +18,7 @@ import com.example.demo.model.Membre;
 import com.example.demo.service.membreService;
 
 @RestController
-@RequestMapping("/members")
+@RequestMapping("/membres")
 public class membreController {
     
     @Autowired
