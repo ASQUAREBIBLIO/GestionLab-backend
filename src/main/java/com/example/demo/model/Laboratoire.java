@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +33,7 @@ public class Laboratoire {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Etablissement etablissement;
     
-    @OneToMany(mappedBy="laboratoire", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy="laboratoire", fetch = FetchType.LAZY)
 	private List<Membre> membres;
     
         
