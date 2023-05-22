@@ -16,32 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.etablissementService;
 import com.example.demo.model.Etablissement;
+import com.example.demo.model.Laboratoire;
 
 @RestController
 @RequestMapping("/etablissements")
 public class etablissementController {
     
     @Autowired
-    private etablissementService etablissementService;
+    private etablissementService _etablissementService;
 
     @GetMapping
     public ResponseEntity<List<Etablissement>> getEtablissements(){
-        return new ResponseEntity<>(etablissementService.getEtablissements(), HttpStatus.OK);
+        return new ResponseEntity<>(_etablissementService.getEtablissements(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Etablissement> getEtabById(@PathVariable Integer id){
-        return new ResponseEntity<>(etablissementService.getEtabById(id), HttpStatus.OK);
+        return new ResponseEntity<>(_etablissementService.getEtabById(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Etablissement> addEtablissement(@RequestBody Etablissement etablissement){
-        return new ResponseEntity<>(etablissementService.addEtablissement(etablissement), HttpStatus.CREATED);
+        return new ResponseEntity<>(_etablissementService.addEtablissement(etablissement), HttpStatus.CREATED);
     }
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<Etablissement> updateEtablissement(@RequestBody Etablissement etablissement, @PathVariable Integer id){
-        Etablissement exEtablissement = etablissementService.updateEtablissement(etablissement, id);
+        Etablissement exEtablissement = _etablissementService.updateEtablissement(etablissement, id);
         if(exEtablissement != null)
             return new ResponseEntity<>(exEtablissement, HttpStatus.OK);
         else
@@ -50,10 +51,15 @@ public class etablissementController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Etablissement> deleteEtablissement(@PathVariable Integer id){
-        boolean etabToDelete = etablissementService.deleteEtablissement(id);
+        boolean etabToDelete = _etablissementService.deleteEtablissement(id);
         if(etabToDelete)
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/{id}/laboratoires")
+    public ResponseEntity<List<Laboratoire>> getAllLaboratoiresOfEtablissement(@PathVariable("id") Integer id){
+        return new ResponseEntity<>(_etablissementService.getAllLaboratoiresOfEtablissement(id), HttpStatus.OK);
     }
 }
