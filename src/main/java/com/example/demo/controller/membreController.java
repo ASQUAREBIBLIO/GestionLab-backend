@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -61,11 +59,11 @@ public class membreController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/{id}/UcaRecherche/{annee}")
+    @PostMapping("/{id}/UcaRecherche/{ucaId}")
     public ResponseEntity<String> addUcaRechToMembre(@PathVariable("id") Integer membreId, 
-            @PathVariable("annee") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date ucaRechAnnee){
+            @PathVariable("ucaId") Integer ucaRechId){
                 
-        _membreService.addUcaRechToMembre(membreId, ucaRechAnnee);
+        _membreService.addUcaRechToMembre(membreId, ucaRechId);
         return ResponseEntity.ok("It's done!");
     }
 

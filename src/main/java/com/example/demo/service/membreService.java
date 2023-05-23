@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import com.example.demo.repository.membreRepository;
 import com.example.demo.repository.ucaRechRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 import com.example.demo.model.Membre;
 import com.example.demo.model.UcaRech;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class membreService {
 
@@ -45,8 +47,8 @@ public class membreService {
         } else return null;
     }
 
-    public void addUcaRechToMembre(Integer membreId, Date annee){
-        UcaRech ucaDotation = _ucaRechRepository.findByAnnee(annee);
+    public void addUcaRechToMembre(Integer membreId, Integer ucaRechId){
+        UcaRech ucaDotation = _ucaRechRepository.findById(ucaRechId).get();
         Membre membre = _membreRepository.findById(membreId).get();
         if(membre.getUcaRechs() != null){
             membre.getUcaRechs().add(ucaDotation);
