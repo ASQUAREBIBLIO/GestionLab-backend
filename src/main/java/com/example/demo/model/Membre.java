@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -50,9 +52,9 @@ public class Membre {
     private Laboratoire laboratoire;
     
 	//member has many ucaRech
-    @ManyToMany(mappedBy = "membres", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "membres", fetch = FetchType.EAGER)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<UcaRech> ucaRechs;
+    private List<UcaRech> ucaRechs = new ArrayList<>();
     
     @OneToMany(mappedBy = "membre")
     private List<ExpressionBesoin> expressionsBesoin;

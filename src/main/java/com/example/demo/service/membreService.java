@@ -48,12 +48,11 @@ public class membreService {
     }
 
     public void addUcaRechToMembre(Integer membreId, Integer ucaRechId){
-        UcaRech ucaDotation = _ucaRechRepository.findById(ucaRechId).get();
         Membre membre = _membreRepository.findById(membreId).get();
-        if(membre.getUcaRechs() != null){
-            membre.getUcaRechs().add(ucaDotation);
-            _membreRepository.save(membre);
-        }
+        UcaRech ucaDotation = _ucaRechRepository.findById(ucaRechId).get();
+        membre.getUcaRechs().add(ucaDotation);
+        _membreRepository.save(membre);
+      
     }
 
     public List<Membre> getMembersByUcaRech(Date ucaRechAnnee) {
