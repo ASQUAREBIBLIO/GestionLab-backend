@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Entity
 @Setter @Getter
-@AllArgsConstructor @NoArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 public class MembreUcaRech {
     @EmbeddedId
     private MembreUcaRechId id;
@@ -25,4 +25,11 @@ public class MembreUcaRech {
     @ManyToOne
     @MapsId("ucaRechId")
     private UcaRech ucaRech;
+
+    public MembreUcaRech(double dotationMembre, Membre membre, UcaRech ucaRech) {
+        this.dotationMembre = dotationMembre;
+        this.membre = membre;
+        this.ucaRech = ucaRech;
+    }
+
 }
