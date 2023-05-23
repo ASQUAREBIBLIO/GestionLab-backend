@@ -37,4 +37,11 @@ public class ProjetService {
             return projetRepository.save(oldProjet);
         } else return null;
     }
+
+    public boolean deleteProjet(Integer projetId){
+        if(projetRepository.existsById(projetId)){
+            projetRepository.deleteById(projetId);
+            return true;
+        } return false;
+    }
 }

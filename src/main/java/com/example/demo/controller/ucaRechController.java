@@ -17,7 +17,7 @@ import com.example.demo.model.UcaRech;
 import com.example.demo.service.ucaRechService;
 
 @RestController
-@RequestMapping("/UcaRecherce")
+@RequestMapping("/Dotations/UcaRecherche")
 public class ucaRechController {
     
     @Autowired
@@ -35,7 +35,7 @@ public class ucaRechController {
         return ResponseEntity.ok(ucaRech);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<UcaRech> createUcaRech(@RequestBody UcaRech ucaRech) {
         UcaRech createdUcaRech = _ucaRechService.createUcaRech(ucaRech);
         return ResponseEntity.ok(createdUcaRech);
