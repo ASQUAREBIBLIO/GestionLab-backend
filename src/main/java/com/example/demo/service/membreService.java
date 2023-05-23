@@ -50,7 +50,7 @@ public class membreService {
         Membre membre = _membreRepository.findById(membreId).get();
         if(membre.getUcaRechs() != null){
             membre.getUcaRechs().add(ucaDotation);
-            ucaDotation.getMembres().add(membre);
+            _membreRepository.save(membre);
         }
     }
 
