@@ -54,7 +54,6 @@ public class Membre {
     
 	//member has many ucaRech
     @OneToMany(mappedBy = "membre")
-    // @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
     
     @OneToMany(mappedBy = "membre")
