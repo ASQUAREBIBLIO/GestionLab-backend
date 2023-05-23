@@ -45,13 +45,17 @@ public class membreService {
         } else return null;
     }
 
-    public void addUcaRechToMembre(String email, Date annee){
+    public void addUcaRechToMembre(Integer membreId, Date annee){
         UcaRech ucaDotation = _ucaRechRepository.findByAnnee(annee);
-        Membre membre = _membreRepository.findByEmail(email);
+        Membre membre = _membreRepository.findById(membreId).get();
         if(membre.getUcaRechs() != null){
             membre.getUcaRechs().add(ucaDotation);
             ucaDotation.getMembres().add(membre);
         }
+    }
+
+    public List<Membre> getMembersByUcaRech(Date ucaRechAnnee) {
+        return _membreRepository.findByUcaRech(ucaRechAnnee);
     }
 
     public void setMembreAsDirector(String email){
@@ -65,6 +69,4 @@ public class membreService {
             return true;
         } else return false;
     }
-
-   
 }

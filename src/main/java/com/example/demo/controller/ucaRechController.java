@@ -17,7 +17,7 @@ import com.example.demo.model.UcaRech;
 import com.example.demo.service.ucaRechService;
 
 @RestController
-@RequestMapping("/Dotations/UcaRecherche")
+@RequestMapping("/dotations/UcaRecherche")
 public class ucaRechController {
     
     @Autowired

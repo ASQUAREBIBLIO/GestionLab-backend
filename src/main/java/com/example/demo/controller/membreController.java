@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,28 +23,28 @@ import com.example.demo.service.membreService;
 public class membreController {
     
     @Autowired
-    private membreService memService;
+    private membreService _membreService;
 
     @GetMapping
     public ResponseEntity<List<Membre>> getAllMembres(){
-        List<Membre> membres = memService.getAllMembres();
+        List<Membre> membres = _membreService.getAllMembres();
         return new ResponseEntity<>(membres, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Membre> getMembreById(@PathVariable Integer id){
-        return new ResponseEntity<>(memService.getMembreById(id), HttpStatus.OK);
+        return new ResponseEntity<>(_membreService.getMembreById(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Membre> addMember(@RequestBody Membre membre){
-        Membre newMembre = memService.addMembre(membre);
+        Membre newMembre = _membreService.addMembre(membre);
         return new ResponseEntity<>(newMembre, HttpStatus.CREATED);
     }
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<Membre> editMember(@PathVariable Integer id, @RequestBody Membre membre){
-        Membre exMembre = memService.updateMembre(membre, id);
+        Membre exMembre = _membreService.updateMembre(membre, id);
         if(exMembre != null)
             return new ResponseEntity<>(exMembre, HttpStatus.OK);
         else 
@@ -52,11 +53,17 @@ public class membreController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Membre> deleteMembre(@PathVariable Integer id){
-        boolean deletedMembre = memService.deleteMembre(id);
+        boolean deletedMembre = _membreService.deleteMembre(id);
         if(deletedMembre)
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         else 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/{id}/UcaRecherche/{annee}")
+    public ResponseEntity<String> addUcaRechToMembre(@PathVariable("id") Integer membreId, @PathVariable("annee") Date ucaRechAnnee){
+        _membreService.addUcaRechToMembre(membreId, ucaRechAnnee);
+        return ResponseEntity.ok("It's done!");
     }
 
 }
