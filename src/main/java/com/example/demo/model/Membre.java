@@ -35,11 +35,14 @@ public class Membre {
     
     @Column(length = 20)
     private String nom;
+    
     @Column(length = 20)
     private String prenom;
+
     private String password;
     @Column(unique = true)
     private String email;
+
     private boolean isDirector;
     
     @ManyToMany 
