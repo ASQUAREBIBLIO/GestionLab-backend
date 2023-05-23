@@ -55,7 +55,6 @@ public class Membre {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Laboratoire laboratoire;
     
-	//member has many ucaRech
     @OneToMany(mappedBy = "membre")
     private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
     
