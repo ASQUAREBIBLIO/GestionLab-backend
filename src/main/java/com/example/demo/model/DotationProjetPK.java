@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter @Getter
 @AllArgsConstructor @NoArgsConstructor
 public class DotationProjetPK {
-	private int idProjet;
-	private int id;
+	private Integer idProjet;
+	private Integer id;
 
 }

@@ -19,7 +19,7 @@ import lombok.Setter;
 public class Projet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProjet;
+    private Integer idProjet;
     
     private String nom;
     private Date dateDebut;
