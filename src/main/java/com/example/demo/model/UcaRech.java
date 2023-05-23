@@ -1,15 +1,15 @@
 package com.example.demo.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,11 +22,12 @@ public class UcaRech {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    @Column(unique = true)
     private Date annee;
     private String source;
     private double budget;
     
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Membre> membres;
+    @OneToMany(mappedBy = "ucaRech")
+    private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
 }
 

@@ -32,7 +32,6 @@ public class ucaRechService {
         ucaRech.setAnnee(updatedUcaRech.getAnnee());
         ucaRech.setSource(updatedUcaRech.getSource());
         ucaRech.setBudget(updatedUcaRech.getBudget());
-        ucaRech.setMembres(updatedUcaRech.getMembres());
 
         return ucaRechRepository.save(ucaRech);
     }

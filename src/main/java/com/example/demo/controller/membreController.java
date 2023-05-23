@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,12 +60,13 @@ public class membreController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/{id}/UcaRecherche/{ucaId}")
-    public ResponseEntity<String> addUcaRechToMembre(@PathVariable("id") Integer membreId, 
-            @PathVariable("ucaId") Integer ucaRechId){
+    // @PostMapping("/{id}/UcaRecherche/{ucaId}")
+    // public ResponseEntity<String> addUcaRechToMembre(@PathVariable("id") Integer membreId, 
+    //         @PathVariable("ucaId") Integer ucaRechId){
                 
-        _membreService.addUcaRechToMembre(membreId, ucaRechId);
-        return ResponseEntity.ok("It's done!");
-    }
+    //     _membreService.addUcaRechToMembre(membreId, ucaRechId);
+    //     return ResponseEntity.ok("It's done!");
+    // }
+
 
 }

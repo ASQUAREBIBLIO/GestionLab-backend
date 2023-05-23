@@ -1,16 +1,14 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,9 +30,12 @@ public class Membre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    @Column(length = 20)
     private String nom;
+    @Column(length = 20)
     private String prenom;
     private String password;
+    @Column(unique = true)
     private String email;
     private boolean isDirector;
     
@@ -52,9 +53,9 @@ public class Membre {
     private Laboratoire laboratoire;
     
 	//member has many ucaRech
-    @ManyToMany(mappedBy = "membres", fetch = FetchType.EAGER)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<UcaRech> ucaRechs = new ArrayList<>();
+    @OneToMany(mappedBy = "membre")
+    // @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
     
     @OneToMany(mappedBy = "membre")
     private List<ExpressionBesoin> expressionsBesoin;
