@@ -25,6 +25,7 @@ public class UcaRech {
     
     @Column(unique = true)
     private Date annee;
+    
     private String source;
     private double budget;
     
