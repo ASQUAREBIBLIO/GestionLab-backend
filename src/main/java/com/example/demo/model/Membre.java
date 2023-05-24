@@ -58,8 +58,8 @@ public class Membre {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Laboratoire laboratoire;
     
-    // @OneToMany(mappedBy = "membre")
-    // private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
+    @OneToMany(mappedBy = "membre")
+    private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
     
     @OneToMany(mappedBy = "membre")
     private List<ExpressionBesoin> expressionsBesoin;

@@ -9,27 +9,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-// @Entity
-// @Setter @Getter
-// @NoArgsConstructor @AllArgsConstructor
+@Entity
+@Setter @Getter
+@NoArgsConstructor @AllArgsConstructor
 public class MembreUcaRech {
-    // @EmbeddedId
-    // private MembreUcaRechId id;
+    @EmbeddedId
+    private MembreUcaRechId id;
 
-    // private double dotationMembre;
+    private double dotationMembre;
 
-    // @ManyToOne
-    // @MapsId("membreId")
-    // private Membre membre;
+    @ManyToOne
+    @MapsId("membreId")
+    private Membre membre;
 
-    // @ManyToOne
-    // @MapsId("ucaRechId")
-    // private UcaRech ucaRech;
+    @ManyToOne
+    @MapsId("ucaRechId")
+    private UcaRech ucaRech;
 
-    // public MembreUcaRech(double dotationMembre, Membre membre, UcaRech ucaRech) {
-    //     this.dotationMembre = dotationMembre;
-    //     this.membre = membre;
-    //     this.ucaRech = ucaRech;
-    // }
+    public MembreUcaRech(double dotationMembre, Membre membre, UcaRech ucaRech) {
+        this.dotationMembre = dotationMembre;
+        this.membre = membre;
+        this.ucaRech = ucaRech;
+    }
 
 }

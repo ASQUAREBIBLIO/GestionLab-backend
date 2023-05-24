@@ -58,15 +58,15 @@ public class membreService {
         } else return false;
     }
 
-//     public Membre addUcaRechToMembre(Integer membreId, Integer ucaRechId, double dotationMembre) {
-//         Membre membre = _membreRepository.findById(membreId).get();
+    public Membre addUcaRechToMembre(Integer membreId, Integer ucaRechId, double dotationMembre) {
+        Membre membre = _membreRepository.findById(membreId).get();
 
-//         UcaRech ucaRech = _ucaRechRepository.findById(ucaRechId).get();
+        UcaRech ucaRech = _ucaRechRepository.findById(ucaRechId).get();
 
-//         MembreUcaRech membreUcaRech = new MembreUcaRech(dotationMembre, membre, ucaRech);
-//         membre.getMembreUcaRechs().add(membreUcaRech);
-//         ucaRech.getMembreUcaRechs().add(membreUcaRech);
+        MembreUcaRech membreUcaRech = new MembreUcaRech(dotationMembre, membre, ucaRech);
+        membre.getMembreUcaRechs().add(membreUcaRech);
+        ucaRech.getMembreUcaRechs().add(membreUcaRech);
 
-//         return _membreRepository.save(membre);
-//     }
+        return _membreRepository.save(membre);
+    }
  }

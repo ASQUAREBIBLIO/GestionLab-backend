@@ -29,7 +29,7 @@ public class UcaRech {
     private String source;
     private double budget;
     
-    // @OneToMany(mappedBy = "ucaRech")
-    // private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
+    @OneToMany(mappedBy = "ucaRech")
+    private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
 }
 
