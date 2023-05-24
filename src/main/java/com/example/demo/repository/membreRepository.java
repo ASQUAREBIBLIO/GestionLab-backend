@@ -13,6 +13,6 @@ import com.example.demo.model.Membre;
 public interface membreRepository extends JpaRepository<Membre, Integer> {
     public Membre findByEmail(String email);
 
-    @Query("SELECT DISTINCT m FROM Membre m JOIN m.ucaRechs u WHERE u.annee = :anneeUcaRech")
-    List<Membre> findByUcaRech(@Param("anneeUcaRech") Date annee);
+    // @Query("SELECT DISTINCT m FROM Membre m JOIN m.ucaRechs u WHERE u.annee = :anneeUcaRech")
+    // List<Membre> findByUcaRech(@Param("anneeUcaRech") Date annee);
 }
