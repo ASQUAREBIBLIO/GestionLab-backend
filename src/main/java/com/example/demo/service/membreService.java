@@ -60,7 +60,6 @@ public class membreService {
 
     public Membre addUcaRechToMembre(Integer membreId, Integer ucaRechId, double dotationMembre) {
         Membre membre = _membreRepository.findById(membreId).get();
-
         UcaRech ucaRech = _ucaRechRepository.findById(ucaRechId).get();
 
         MembreUcaRech membreUcaRech = new MembreUcaRech(dotationMembre, membre, ucaRech);

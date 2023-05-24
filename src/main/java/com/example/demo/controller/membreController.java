@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Membre;
+import com.example.demo.model.MembreUcaRech;
 import com.example.demo.service.membreService;
 
 @RestController
@@ -66,9 +67,9 @@ public class membreController {
     public ResponseEntity<Membre> addUcaRechToMembre(
             @PathVariable Integer membreId,
             @PathVariable Integer ucaRechId,
-            @RequestParam double dotationMembre
+            @RequestBody MembreUcaRech membreUcaRech
     ) throws NotFoundException {
-        Membre membre = _membreService.addUcaRechToMembre(membreId, ucaRechId, dotationMembre);
+        Membre membre = _membreService.addUcaRechToMembre(membreId, ucaRechId, membreUcaRech.getDotationMembre());
         return ResponseEntity.ok(membre);
     }
 
