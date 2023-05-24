@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +18,9 @@ import jakarta.persistence.InheritanceType;
 
 @Entity
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "responsable_type")
 public class Responsable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
