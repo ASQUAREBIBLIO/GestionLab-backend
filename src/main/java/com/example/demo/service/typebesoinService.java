@@ -29,8 +29,14 @@ public class typebesoinService {
         return typeBesoinRepository.save(typeBesoin);
     }
 
-    public TypeBesoin updateTypeBesoin(TypeBesoin typeBesoin) {
-        return typeBesoinRepository.save(typeBesoin);
+    public TypeBesoin updateTypeBesoin(TypeBesoin typeBesoin, String typeId) {
+        TypeBesoin uTypeBesoin = typeBesoinRepository.findById(typeId).get();
+        if(uTypeBesoin != null){
+            uTypeBesoin.setType(typeBesoin.getType());
+            uTypeBesoin.setExpressionsBesoin(typeBesoin.getExpressionsBesoin());
+            return typeBesoinRepository.save(typeBesoin);
+        } else return null;
+       
     }
 
     public void deleteTypeBesoin(String id) {
