@@ -2,8 +2,8 @@ package com.example.demo.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Membre;
-import com.example.demo.model.MembreUcaRech;
 import com.example.demo.service.membreService;
+
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/membres")
+@AllArgsConstructor
 public class membreController {
     
-    @Autowired
     private membreService _membreService;
 
     @GetMapping
@@ -67,9 +67,10 @@ public class membreController {
     public ResponseEntity<Membre> addUcaRechToMembre(
             @PathVariable Integer membreId,
             @PathVariable Integer ucaRechId,
-            @RequestBody MembreUcaRech membreUcaRech
+            @RequestBody Map<String, Object> requestBody
     ) throws NotFoundException {
-        Membre membre = _membreService.addUcaRechToMembre(membreId, ucaRechId, membreUcaRech.getDotationMembre());
+        double dotationMembre = (double) requestBody.get("dotationMembre");
+        Membre membre = _membreService.addUcaRechToMembre(membreId, ucaRechId, dotationMembre);
         return ResponseEntity.ok(membre);
     }
 
