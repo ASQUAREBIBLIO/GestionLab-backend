@@ -1,18 +1,19 @@
 package com.example.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.TypeBesoin;
 import com.example.demo.repository.TypeBesoinRepository;
 
+import lombok.AllArgsConstructor;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class typebesoinService {
 
-    @Autowired
     private TypeBesoinRepository typeBesoinRepository;
 
     public List<TypeBesoin> getAllTypesBesoin() {

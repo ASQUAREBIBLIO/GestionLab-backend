@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Responsable;
@@ -8,12 +7,14 @@ import com.example.demo.model.ExpressionBesoin;
 import com.example.demo.repository.ResponsableRepository;
 //import com.example.demo.repository.expressionbesoinRepository;
 
+import lombok.AllArgsConstructor;
+
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ResponsableService {
 
-    @Autowired
     private ResponsableRepository responsableRepository;
 
     public Responsable createResponsable(Responsable responsable) {
