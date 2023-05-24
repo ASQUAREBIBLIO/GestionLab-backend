@@ -35,7 +35,7 @@ public class Membre {
     
     @Column(length = 20)
     private String nom;
-    
+
     @Column(length = 20)
     private String prenom;
 
@@ -58,8 +58,8 @@ public class Membre {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Laboratoire laboratoire;
     
-    @OneToMany(mappedBy = "membre")
-    private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
+    // @OneToMany(mappedBy = "membre")
+    // private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
     
     @OneToMany(mappedBy = "membre")
     private List<ExpressionBesoin> expressionsBesoin;
