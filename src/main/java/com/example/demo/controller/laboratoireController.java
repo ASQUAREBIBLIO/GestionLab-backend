@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -60,8 +61,17 @@ public class laboratoireController {
     }
 
     @GetMapping("/{id}/membres")
-    public ResponseEntity<List<Membre>> getAllMembresOfLaboratoire(@PathVariable String nomLabo){
+    public ResponseEntity<List<Membre>> getAllMembresOfLaboratoire(@PathVariable("id") String nomLabo){
         return new ResponseEntity<>(_laboratoireService.getAllMembresOfLaboratoire(nomLabo), HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/membres")
+    public ResponseEntity<Laboratoire> addMembreToLaboratoire(
+            @PathVariable("id") String laboNom,
+            @RequestBody Membre membre
+    ) throws NotFoundException {
+        Laboratoire laboratoire = _laboratoireService.addMembreToLaboratoire(laboNom, membre);
+        return new ResponseEntity<>(laboratoire, HttpStatus.CREATED);
     }
 
 }

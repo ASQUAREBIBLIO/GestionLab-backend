@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Membre;
@@ -60,13 +62,15 @@ public class membreController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // @PostMapping("/{id}/UcaRecherche/{ucaId}")
-    // public ResponseEntity<String> addUcaRechToMembre(@PathVariable("id") Integer membreId, 
-    //         @PathVariable("ucaId") Integer ucaRechId){
-                
-    //     _membreService.addUcaRechToMembre(membreId, ucaRechId);
-    //     return ResponseEntity.ok("It's done!");
-    // }
+    @PostMapping("/{membreId}/ucaRechs/{ucaRechId}")
+    public ResponseEntity<Membre> addUcaRechToMembre(
+            @PathVariable Integer membreId,
+            @PathVariable Integer ucaRechId,
+            @RequestParam double dotationMembre
+    ) throws NotFoundException {
+        Membre membre = _membreService.addUcaRechToMembre(membreId, ucaRechId, dotationMembre);
+        return ResponseEntity.ok(membre);
+    }
 
 
 }

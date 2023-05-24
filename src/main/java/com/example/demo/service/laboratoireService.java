@@ -52,4 +52,13 @@ public class laboratoireService {
             return true;
         } else return false; 
     }
+
+    public Laboratoire addMembreToLaboratoire(String laboNom, Membre membre) {
+        Laboratoire laboratoire = _laboratoireRepository.getLaboratoireByNomLabo(laboNom);
+
+        membre.setLaboratoire(laboratoire);
+        laboratoire.getMembres().add(membre);
+
+        return _laboratoireRepository.save(laboratoire);
+    }
 }
