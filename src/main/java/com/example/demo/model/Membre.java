@@ -44,6 +44,8 @@ public class Membre {
     private String email;
 
     private boolean isDirector;
+
+    private Role role;
     
     @ManyToMany 
     @JoinTable (
@@ -53,7 +55,7 @@ public class Membre {
     )
     private List<Projet> projets;
     
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "laboratoire_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Laboratoire laboratoire;
@@ -63,5 +65,9 @@ public class Membre {
     
     @OneToMany(mappedBy = "membre")
     private List<ExpressionBesoin> expressionsBesoin;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+    private Admin admin;
 
 }

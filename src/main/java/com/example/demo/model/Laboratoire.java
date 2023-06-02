@@ -38,6 +38,10 @@ public class Laboratoire {
     @OneToMany(mappedBy="laboratoire", fetch = FetchType.LAZY)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private List<Membre> membres;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+    private Admin admin;
     
         
 }
