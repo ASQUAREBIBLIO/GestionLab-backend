@@ -30,6 +30,13 @@ public class Admin {
     private String prenom;
     private String email;
 
+    private String password;
+
+    private Role role;
+
     @OneToMany(mappedBy = "admin")
     private Set<Membre> membres = new HashSet<>();
+
+    @OneToMany(mappedBy = "admin")
+    private Set<Membre> responsables = new HashSet<>();
 }

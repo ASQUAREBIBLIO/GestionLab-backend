@@ -14,6 +14,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity
@@ -29,7 +31,13 @@ public class Responsable {
     private String nom;
     private String prenom;
     private String email;
+    private String password;
+    private Role role;
     
     @OneToMany(mappedBy = "responsable")
     private List<ExpressionBesoin> expressionsBesoin;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+    private Admin admin;
 }
