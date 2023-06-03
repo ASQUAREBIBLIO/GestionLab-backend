@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +11,8 @@ import lombok.Setter;
 @Embeddable
 @Setter @Getter
 @AllArgsConstructor @NoArgsConstructor
-public class DotationProjetPK {
-	private Integer idProjet;
-	private Integer id;
+public class DotationProjetPK implements Serializable {
+	private Integer projetId;
+	private Integer membreId;
 
 }

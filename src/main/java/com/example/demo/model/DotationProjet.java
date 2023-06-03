@@ -9,8 +9,6 @@ import lombok.Setter;
 
 
 @Entity
-// setters and getters
-// constructors with an without args
 @Setter @Getter
 @NoArgsConstructor @AllArgsConstructor
 public class DotationProjet {

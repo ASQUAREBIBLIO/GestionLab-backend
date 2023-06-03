@@ -50,8 +50,8 @@ public class Membre {
     @ManyToMany 
     @JoinTable (
         name = "DotationProjet",
-        joinColumns = @JoinColumn(name = "id"),
-        inverseJoinColumns = @JoinColumn(name ="idProjet")
+        joinColumns = @JoinColumn(name = "membreId"),
+        inverseJoinColumns = @JoinColumn(name ="projetId")
     )
     private List<Projet> projets;
     
