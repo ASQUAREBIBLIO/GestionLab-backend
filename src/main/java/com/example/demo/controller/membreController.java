@@ -23,7 +23,7 @@ import com.example.demo.service.membreService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8082/membres")
+@CrossOrigin(origins = "http://localhost:8082")
 @RequestMapping("/membres")
 @AllArgsConstructor
 public class membreController {
