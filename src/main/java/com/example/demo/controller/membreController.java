@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.example.demo.service.membreService;
 import lombok.AllArgsConstructor;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8082/membres")
 @RequestMapping("/membres")
 @AllArgsConstructor
 public class membreController {
