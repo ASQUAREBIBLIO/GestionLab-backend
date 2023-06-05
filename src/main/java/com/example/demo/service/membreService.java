@@ -10,6 +10,7 @@ import com.example.demo.repository.ucaRechRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
+import com.example.demo.model.Laboratoire;
 import com.example.demo.model.Membre;
 import com.example.demo.model.MembreUcaRech;
 import com.example.demo.model.UcaRech;
@@ -67,5 +68,10 @@ public class membreService {
         ucaRech.getMembreUcaRechs().add(membreUcaRech);
 
         return _membreRepository.save(membre);
+    }
+
+    public String getLaboratoireByMember(Integer membreId){
+        Membre membre = _membreRepository.findById(membreId).get();
+        return membre.getLaboratoire().getNomLabo();
     }
  }
