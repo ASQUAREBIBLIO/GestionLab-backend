@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.Laboratoire;
 import com.example.demo.model.Membre;
 import com.example.demo.service.membreService;
 
@@ -41,7 +42,7 @@ public class membreController {
         return new ResponseEntity<>(_membreService.getMembreById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Membre> addMember(@RequestBody Membre membre){
         Membre newMembre = _membreService.addMembre(membre);
         return new ResponseEntity<>(newMembre, HttpStatus.CREATED);
@@ -76,5 +77,9 @@ public class membreController {
         return ResponseEntity.ok(membre);
     }
 
+    @GetMapping("/{id}/laboratoire")
+    public ResponseEntity<String> getLaboratoireByMembre(@PathVariable("id") Integer membreId){
+        return new ResponseEntity<>(_membreService.getLaboratoireByMember(membreId), HttpStatus.OK);
+    }
 
 }
