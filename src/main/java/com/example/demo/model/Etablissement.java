@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,7 +29,7 @@ public class Etablissement {
     private String adresse;
     
     @OneToMany(mappedBy = "etablissement", fetch = FetchType.LAZY)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnore
     private List<Laboratoire> laboratoires;
 
     @ManyToOne
