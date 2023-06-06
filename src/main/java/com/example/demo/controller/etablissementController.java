@@ -35,12 +35,12 @@ public class etablissementController {
         return new ResponseEntity<>(_etablissementService.getEtabById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Etablissement> addEtablissement(@RequestBody Etablissement etablissement){
         return new ResponseEntity<>(_etablissementService.addEtablissement(etablissement), HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Etablissement> updateEtablissement(@RequestBody Etablissement etablissement, @PathVariable Integer id){
         Etablissement exEtablissement = _etablissementService.updateEtablissement(etablissement, id);
         if(exEtablissement != null)
@@ -49,7 +49,7 @@ public class etablissementController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Etablissement> deleteEtablissement(@PathVariable Integer id){
         boolean etabToDelete = _etablissementService.deleteEtablissement(id);
         if(etabToDelete)
