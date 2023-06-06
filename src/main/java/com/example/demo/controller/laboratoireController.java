@@ -37,7 +37,7 @@ public class laboratoireController {
         return new ResponseEntity<>(_laboratoireService.getLaboById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Laboratoire> addLaboratoire(@RequestBody Laboratoire labo){
         return new ResponseEntity<>(_laboratoireService.addLaboratoire(labo), HttpStatus.CREATED);
     }
