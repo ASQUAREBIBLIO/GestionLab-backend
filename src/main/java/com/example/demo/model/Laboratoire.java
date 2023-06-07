@@ -36,13 +36,17 @@ public class Laboratoire {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Etablissement etablissement;
     
-    @OneToMany(mappedBy="laboratoire", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy="laboratoire", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JsonIgnore
 	private List<Membre> membres;
 
     @ManyToOne
     @JoinColumn(name = "admin_id")
     private Admin admin;
+
+    public void clearMembers(){
+        this.membres.clear();
+    }
     
         
 }

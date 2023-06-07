@@ -48,7 +48,11 @@ public class laboratoireService {
     public boolean deleteLaboratoire(Integer id){
         Laboratoire lab  = _laboratoireRepository.findById(id).get();
         if(_laboratoireRepository.existsById(id)) {
-            _laboratoireRepository.delete(lab);
+            for(Membre m: lab.getMembres()) {
+                m.setLaboratoire(null);
+                _laboratoireRepository.save(lab);
+            }
+            _laboratoireRepository.deleteById(id);
             return true;
         } else return false; 
     }

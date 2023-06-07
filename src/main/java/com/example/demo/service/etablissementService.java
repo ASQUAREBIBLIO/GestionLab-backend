@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 
 import com.example.demo.model.Etablissement;
 import com.example.demo.model.Laboratoire;
+import com.example.demo.model.Membre;
 
 @Service
 @AllArgsConstructor
@@ -48,6 +49,11 @@ public class etablissementService {
     public boolean deleteEtablissement(Integer id){
         Etablissement etabToDelete = _etablissementRepository.findById(id).get();
         if(_etablissementRepository.existsById(id)){
+            for(Laboratoire lab: etabToDelete.getLaboratoires()){
+                for(Membre m: lab.getMembres()){
+                    m.setLaboratoire(null);
+                }
+            }
             _etablissementRepository.delete(etabToDelete);
             return true;
         } else return false;
