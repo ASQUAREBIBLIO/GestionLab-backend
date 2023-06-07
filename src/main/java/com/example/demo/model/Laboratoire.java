@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Laboratoire {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Etablissement etablissement;
     
-    @OneToMany(mappedBy="laboratoire", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="laboratoire", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonIgnore
 	private List<Membre> membres;
 
