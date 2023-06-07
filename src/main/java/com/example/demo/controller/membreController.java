@@ -47,7 +47,7 @@ public class membreController {
         return new ResponseEntity<>(newMembre, HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Membre> editMember(@PathVariable Integer id, @RequestBody Membre membre){
         Membre exMembre = _membreService.updateMembre(membre, id);
         if(exMembre != null)
@@ -56,7 +56,7 @@ public class membreController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Membre> deleteMembre(@PathVariable Integer id){
         boolean deletedMembre = _membreService.deleteMembre(id);
         if(deletedMembre)
