@@ -42,7 +42,7 @@ public class laboratoireController {
         return new ResponseEntity<>(_laboratoireService.addLaboratoire(labo), HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Laboratoire> updateLaboratoire(@RequestBody Laboratoire labo, @PathVariable Integer id){
         Laboratoire newLabo = _laboratoireService.updateLaboratoire(labo, id);
         if(newLabo != null)
@@ -51,7 +51,7 @@ public class laboratoireController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Laboratoire> deleteLaboratoire(@PathVariable Integer id){
         boolean laboToDelete = _laboratoireService.deleteLaboratoire(id);
         if(laboToDelete)
