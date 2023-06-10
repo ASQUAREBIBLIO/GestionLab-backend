@@ -28,10 +28,9 @@ public class LoginController {
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
         
-        // Find admin by email
         Admin admin = adminRepository.findByEmail(email);
         if (admin != null && admin.getPassword().equals(password)) {
-            // Successful login as admin
+            
             String token = generateToken(admin.getId(), "ADMIN");
             return new ResponseEntity<>(new AuthResponse(token, "ADMIN"), HttpStatus.OK);
         }
