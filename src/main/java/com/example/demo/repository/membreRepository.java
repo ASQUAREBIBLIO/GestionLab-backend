@@ -7,7 +7,5 @@ import com.example.demo.model.Membre;
 
 public interface membreRepository extends JpaRepository<Membre, Integer> {
     public Membre findByEmail(String email);
-    
-    Membre findByNom(String nom);
 
 }

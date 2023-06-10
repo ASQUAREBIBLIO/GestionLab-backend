@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,6 +34,8 @@ public class Responsable {
     private String prenom;
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
     
     @OneToMany(mappedBy = "responsable")

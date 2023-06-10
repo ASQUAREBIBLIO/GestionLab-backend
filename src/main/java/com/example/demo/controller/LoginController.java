@@ -1,92 +1,75 @@
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Admin;
+import com.example.demo.model.AuthResponse;
 import com.example.demo.model.LoginRequest;
-import com.example.demo.model.LoginResponse;
 import com.example.demo.model.Membre;
-import com.example.demo.model.Responsable;
 import com.example.demo.repository.AdminRepository;
-import com.example.demo.repository.ResponsableRepository;
 import com.example.demo.repository.membreRepository;
 
+import lombok.AllArgsConstructor;
+
 @RestController
+@AllArgsConstructor
 public class LoginController {
 
-    @Autowired
     private AdminRepository adminRepository;
-    
-    @Autowired
-    private membreRepository membreRepository;
-    
-    @Autowired
-    private ResponsableRepository responsableMarcheRepository;
-    
-    /*@Autowired
-    private ResponsableFinanceRepository responsableFinanceRepository;
-    
-    @Autowired
-    private DirecteurRepository directeurRepository;*/
+    private membreRepository _membreRepository;
+
     
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        // Perform authentication logic here, such as verifying username and password
-        
-        // Assuming authentication is successful
-        String username = loginRequest.getUsername();
+        String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
         
-        // Determine the role of the user
-        String role = determineUserRole(username);
-        
-        // Based on the role, fetch the user information from the appropriate table
-        if (role.equals("admin")) {
-            Admin admin = adminRepository.findByNom(username);
-            // Handle admin-specific logic or return the admin object in the response
-        } else if (role.equals("membre")) {
-            Membre membre = membreRepository.findByNom(username);
-            // Handle membre-specific logic or return the membre object in the response
-        } else if (role.equals("responsable_marche")) {
-            Responsable responsableMarche = responsableMarcheRepository.findByNom(username);
-            // Handle responsable marche-specific logic or return the responsableMarche object in the response
-        } else if (role.equals("responsable_finance")) {
-            Responsable responsableFinance = responsableMarcheRepository.findByNom(username);
-            // Handle responsable finance-specific logic or return the responsableFinance object in the response
-        /*} else if (role.equals("directeur")) {
-            Directeur directeur = directeurRepository.findByUsername(username);
-            // Handle directeur-specific logic or return the directeur object in the response*/
+        // Find admin by email
+        Admin admin = adminRepository.findByEmail(email);
+        if (admin != null && admin.getPassword().equals(password)) {
+            // Successful login as admin
+            String token = generateToken(admin.getId(), "ADMIN");
+            return new ResponseEntity<>(new AuthResponse(token, "ADMIN"), HttpStatus.OK);
         }
-        
-        // Create a response object containing the role or any other relevant information
-        LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setRole(role);
-        
-        // Return the response object in the response body
-        return ResponseEntity.ok(loginResponse);
+
+        // Find member by email
+        Membre member = _membreRepository.findByEmail(email);
+        if (member != null && member.getPassword().equals(password)) {
+            // Successful login as member
+            String token = generateToken(member.getId(), "MEMBRE");
+            return new ResponseEntity<>(new AuthResponse(token, "MEMBRE"), HttpStatus.OK);
+        }
+
+        // Invalid login credentials
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    
+    }
+
+    private String generateToken(Integer id, String role) {
+        return role+"+"+id;
     }
     
-    private String determineUserRole(String username) {
-        // Implement your logic to determine the role of the user based on the username
-        // You can query the database or any other method to determine the role
+    // private String determineUserRole(String username) {
+    //     // Implement your logic to determine the role of the user based on the username
+    //     // You can query the database or any other method to determine the role
         
-        // For simplicity, let's assume a static mapping between usernames and roles
-        if (username.equals("admin")) {
-            return "admin";
-        } else if (username.equals("membre")) {
-            return "membre";
-        } else if (username.equals("responsable_marche")) {
-            return "responsable_marche";
-        } else if (username.equals("responsable_finance")) {
-            return "responsable_finance";
-        } else if (username.equals("directeur")) {
-            return "directeur";
-        }
+    //     // For simplicity, let's assume a static mapping between usernames and roles
+    //     if (username.equals("admin")) {
+    //         return "admin";
+    //     } else if (username.equals("membre")) {
+    //         return "membre";
+    //     } else if (username.equals("responsable_marche")) {
+    //         return "responsable_marche";
+    //     } else if (username.equals("responsable_finance")) {
+    //         return "responsable_finance";
+    //     } else if (username.equals("directeur")) {
+    //         return "directeur";
+    //     }
         
-        return null; // If the role cannot be determined
-    }
+    //     return null; // If the role cannot be determined
+    // }
 }
