@@ -46,9 +46,10 @@ public class membreService {
         } else return null;
     }
 
-    public void setMembreAsDirector(String email){
-        Membre membre = _membreRepository.findByEmail(email);
-        membre.setDirector(true);
+    public Membre setMembreAsDirector(Integer memberID, boolean isDirector){
+        Membre membre = _membreRepository.findById(memberID).orElse(null);
+        membre.setDirector(isDirector);
+        return membre;
     }
     
     public boolean deleteMembre(Integer id){
