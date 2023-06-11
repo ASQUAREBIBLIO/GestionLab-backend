@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.TypeBesoin;
@@ -19,6 +20,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/typebesoins")
 public class TypeBesoinController {
 
     private typebesoinService _typebesoinService;
@@ -34,12 +36,12 @@ public class TypeBesoinController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TypeBesoin> getTypeBesoinById(@PathVariable("id") String typeId){
+    public ResponseEntity<TypeBesoin> getTypeBesoinById(@PathVariable("id") int typeId){
         return new ResponseEntity<>(_typebesoinService.getTypeBesoinById(typeId), HttpStatus.OK);
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<TypeBesoin> updateProjet(@RequestBody TypeBesoin typeBesoin, @PathVariable("id") String typeId){
+    public ResponseEntity<TypeBesoin> updateProjet(@RequestBody TypeBesoin typeBesoin, @PathVariable("id") int typeId){
         TypeBesoin uTypeBesoin = _typebesoinService.updateTypeBesoin(typeBesoin, typeId);
         if(uTypeBesoin != null){
             return new ResponseEntity<>(uTypeBesoin, HttpStatus.OK);
@@ -49,7 +51,7 @@ public class TypeBesoinController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteProjet(@PathVariable("id") String typeId){
+    public ResponseEntity<Void> deleteProjet(@PathVariable("id") int typeId){
         _typebesoinService.deleteTypeBesoin(typeId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

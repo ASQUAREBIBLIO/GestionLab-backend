@@ -20,7 +20,7 @@ public class ExpressionBesoinController {
     public ResponseEntity<ExpressionBesoin> createExpressionBesoin(@RequestBody ExpressionBesoin expressionBesoin,
                                                                    @RequestParam Integer membreId,
                                                                    @RequestParam Integer responsableId,
-                                                                   @RequestParam String typeBesoinId) {
+                                                                   @RequestParam int typeBesoinId) {
         ExpressionBesoin createdExpressionBesoin = expressionBesoinService.createExpressionBesoin(expressionBesoin,
                 membreId, responsableId, typeBesoinId);
         if (createdExpressionBesoin != null) {
@@ -34,7 +34,7 @@ public class ExpressionBesoinController {
                                                                    @RequestBody ExpressionBesoin expressionBesoin,
                                                                    @RequestParam Integer membreId,
                                                                    @RequestParam Integer responsableId,
-                                                                   @RequestParam String typeBesoinId) {
+                                                                   @RequestParam int typeBesoinId) {
         ExpressionBesoin updatedExpressionBesoin = expressionBesoinService.updateExpressionBesoin(expressionBesoin,
                 membreId, responsableId, typeBesoinId);
         if (updatedExpressionBesoin != null) {

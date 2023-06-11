@@ -20,7 +20,7 @@ public class typebesoinService {
         return typeBesoinRepository.findAll();
     }
 
-    public TypeBesoin getTypeBesoinById(String id) {
+    public TypeBesoin getTypeBesoinById(int id) {
         Optional<TypeBesoin> typeBesoinOptional = typeBesoinRepository.findById(id);
         return typeBesoinOptional.orElse(null);
     }
@@ -29,7 +29,7 @@ public class typebesoinService {
         return typeBesoinRepository.save(typeBesoin);
     }
 
-    public TypeBesoin updateTypeBesoin(TypeBesoin typeBesoin, String typeId) {
+    public TypeBesoin updateTypeBesoin(TypeBesoin typeBesoin, int typeId) {
         TypeBesoin uTypeBesoin = typeBesoinRepository.findById(typeId).get();
         if(uTypeBesoin != null){
             uTypeBesoin.setType(typeBesoin.getType());
@@ -39,7 +39,7 @@ public class typebesoinService {
        
     }
 
-    public void deleteTypeBesoin(String id) {
+    public void deleteTypeBesoin(int id) {
         typeBesoinRepository.deleteById(id);
     }
 

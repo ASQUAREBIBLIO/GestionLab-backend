@@ -27,7 +27,7 @@ public class expressionbesoinService {
     private TypeBesoinRepository typeBesoinRepository;
 
     public ExpressionBesoin createExpressionBesoin(ExpressionBesoin expressionBesoin, Integer membreId,
-                                                  Integer responsableId, String typeBesoinId) {
+                                                  Integer responsableId, int typeBesoinId) {
         Membre membre = _membreRepository.findById(membreId).orElse(null);
         Responsable responsable = responsableRepository.findById(responsableId).orElse(null);
         TypeBesoin typeBesoin = typeBesoinRepository.findById(typeBesoinId).orElse(null);
@@ -44,7 +44,7 @@ public class expressionbesoinService {
     }
 
     public ExpressionBesoin updateExpressionBesoin(ExpressionBesoin expressionBesoin, Integer membreId,
-                                                  Integer responsableId, String typeBesoinId) {
+                                                  Integer responsableId, int typeBesoinId) {
         Membre membre = _membreRepository.findById(membreId).orElse(null);
         Responsable responsable = responsableRepository.findById(responsableId).orElse(null);
         TypeBesoin typeBesoin = typeBesoinRepository.findById(typeBesoinId).orElse(null);
