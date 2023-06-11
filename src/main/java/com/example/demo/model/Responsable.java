@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.util.List;
 
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,7 @@ import jakarta.persistence.ManyToOne;
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
 //@Inheritance(strategy = InheritanceType.JOINED)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "responsable_type")
+@DiscriminatorColumn(name = "responsable_type", discriminatorType = DiscriminatorType.STRING)
 public class Responsable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
