@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -40,6 +38,8 @@ public class Membre {
 
     private boolean isDirector;
 
+    @OneToMany(mappedBy = "membre")
+    private List<MembreUcaRech> membreUcaRechs;
     
     @ManyToMany 
     @JoinTable (
@@ -52,9 +52,6 @@ public class Membre {
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "laboratoire_id")
     private Laboratoire laboratoire;
-    
-    @OneToMany(mappedBy = "membre")
-    private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
     
     @OneToMany(mappedBy = "membre")
     private List<ExpressionBesoin> expressionsBesoin;

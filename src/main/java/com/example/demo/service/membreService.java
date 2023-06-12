@@ -5,14 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.membreRepository;
-import com.example.demo.repository.ucaRechRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 import com.example.demo.model.Membre;
-import com.example.demo.model.MembreUcaRech;
-import com.example.demo.model.UcaRech;
 
 @Service
 @Transactional
@@ -20,7 +17,6 @@ import com.example.demo.model.UcaRech;
 public class membreService {
 
     private membreRepository _membreRepository;
-    private ucaRechRepository _ucaRechRepository;
 
     public List<Membre> getAllMembres(){
         return _membreRepository.findAll();
@@ -57,17 +53,6 @@ public class membreService {
             _membreRepository.deleteById(id);
             return true;
         } else return false;
-    }
-
-    public Membre addUcaRechToMembre(Integer membreId, Integer ucaRechId, double dotationMembre) {
-        Membre membre = _membreRepository.findById(membreId).get();
-        UcaRech ucaRech = _ucaRechRepository.findById(ucaRechId).get();
-
-        MembreUcaRech membreUcaRech = new MembreUcaRech(dotationMembre, membre, ucaRech);
-        membre.getMembreUcaRechs().add(membreUcaRech);
-        ucaRech.getMembreUcaRechs().add(membreUcaRech);
-
-        return _membreRepository.save(membre);
     }
 
     public String getLaboratoireByMember(Integer membreId){

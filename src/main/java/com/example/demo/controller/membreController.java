@@ -2,9 +2,7 @@ package com.example.demo.controller;
 
 
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -64,17 +62,6 @@ public class membreController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         else 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PostMapping("/{membreId}/ucaRechs/{ucaRechId}")
-    public ResponseEntity<Membre> addUcaRechToMembre(
-            @PathVariable Integer membreId,
-            @PathVariable Integer ucaRechId,
-            @RequestBody Map<String, Object> requestBody
-    ) throws NotFoundException {
-        double dotationMembre = (double) requestBody.get("dotationMembre");
-        Membre membre = _membreService.addUcaRechToMembre(membreId, ucaRechId, dotationMembre);
-        return ResponseEntity.ok(membre);
     }
 
     @GetMapping("/{id}/laboratoire")

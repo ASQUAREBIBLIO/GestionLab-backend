@@ -10,9 +10,7 @@ import com.example.demo.model.Admin;
 import com.example.demo.model.AuthResponse;
 import com.example.demo.model.LoginRequest;
 import com.example.demo.model.Membre;
-import com.example.demo.model.Responsable;
 import com.example.demo.repository.AdminRepository;
-import com.example.demo.repository.ResponsableRepository;
 import com.example.demo.repository.membreRepository;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +21,6 @@ public class LoginController {
 
     private AdminRepository adminRepository;
     private membreRepository _membreRepository;
-    private ResponsableRepository responsableRepository;
 
     
     @PostMapping("/login")

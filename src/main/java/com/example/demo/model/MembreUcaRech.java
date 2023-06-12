@@ -2,8 +2,8 @@ package com.example.demo.model;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,20 +16,15 @@ public class MembreUcaRech {
     @EmbeddedId
     private MembreUcaRechId id;
 
-    private double dotationMembre;
-
     @ManyToOne
-    @MapsId("membreId")
+    @JoinColumn(name = "membreId", updatable = false, insertable = false)
     private Membre membre;
 
     @ManyToOne
-    @MapsId("ucaRechId")
+    @JoinColumn(name = "ucaRechId", updatable = false, insertable = false)
     private UcaRech ucaRech;
 
-    public MembreUcaRech(double dotationMembre, Membre membre, UcaRech ucaRech) {
-        this.dotationMembre = dotationMembre;
-        this.membre = membre;
-        this.ucaRech = ucaRech;
-    }
+    private double dotationMembre;
+
 
 }

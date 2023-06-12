@@ -1,10 +1,8 @@
 package com.example.demo.model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-//import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,8 +26,8 @@ public class UcaRech {
     
     private String source;
     private double budget;
-    
+
     @OneToMany(mappedBy = "ucaRech")
-    private Set<MembreUcaRech> membreUcaRechs = new HashSet<>();
+    private List<MembreUcaRech> membreUcaRechs;
 }
 
