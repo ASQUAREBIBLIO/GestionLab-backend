@@ -1,14 +1,18 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.membreRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
+import com.example.demo.model.Admin;
 import com.example.demo.model.Membre;
 
 @Service
@@ -17,6 +21,7 @@ import com.example.demo.model.Membre;
 public class membreService {
 
     private membreRepository _membreRepository;
+    private AdminRepository adminRepository;
 
     public List<Membre> getAllMembres(){
         return _membreRepository.findAll();

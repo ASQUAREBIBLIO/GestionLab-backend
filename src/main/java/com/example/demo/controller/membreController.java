@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.Admin;
 import com.example.demo.model.Membre;
+import com.example.demo.repository.AdminRepository;
 import com.example.demo.service.membreService;
 
 import lombok.AllArgsConstructor;
@@ -28,6 +30,7 @@ import lombok.AllArgsConstructor;
 public class membreController {
     
     private membreService _membreService;
+    private AdminRepository adminRepository;
 
     @GetMapping
     public ResponseEntity<List<Membre>> getAllMembres(){
@@ -43,7 +46,12 @@ public class membreController {
     @PostMapping
     public ResponseEntity<Membre> addMember(@RequestBody Membre membre){
         Membre newMembre = _membreService.addMembre(membre);
-        return new ResponseEntity<>(newMembre, HttpStatus.CREATED);
+        Admin admin = adminRepository.findById(membre.getAdmin().getId()).get();
+        if(admin != null){
+            membre.setAdmin(admin);
+            return new ResponseEntity<>(newMembre, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/{id}")

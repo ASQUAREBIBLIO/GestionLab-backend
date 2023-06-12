@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,11 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/admin")
 public class AdminController {
     private AdminRepository adminRepository;
+
+    @GetMapping
+    public ResponseEntity<List<Admin>> getAdmin(){
+        return new ResponseEntity<>(adminRepository.findAll(), HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Admin> getAdminById(@PathVariable("id") Integer adminId){
