@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -18,10 +20,12 @@ public class MembreUcaRech {
 
     @ManyToOne
     @JoinColumn(name = "membreId", updatable = false, insertable = false)
+    @JsonIgnore
     private Membre membre;
 
     @ManyToOne
     @JoinColumn(name = "ucaRechId", updatable = false, insertable = false)
+    @JsonIgnore
     private UcaRech ucaRech;
 
     private double dotationMembre;
