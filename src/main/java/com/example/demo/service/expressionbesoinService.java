@@ -4,6 +4,7 @@ package com.example.demo.service;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.ExpressionBesoin;
+import com.example.demo.repository.ResponsableRepository;
 import com.example.demo.repository.expressionbesoinRepository;
 
 import lombok.AllArgsConstructor;
@@ -15,8 +16,10 @@ import java.util.List;
 public class expressionbesoinService {
 
     private expressionbesoinRepository _expressionBesoinRepository;
+    private ResponsableRepository responsableRepository;
 
     public ExpressionBesoin createExpressionBesoin(ExpressionBesoin expressionBesoin) {
+        responsableRepository.save(expressionBesoin.getResponsable());
         return _expressionBesoinRepository.save(expressionBesoin);
     }
 
