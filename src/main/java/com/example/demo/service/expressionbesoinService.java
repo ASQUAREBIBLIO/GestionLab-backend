@@ -45,6 +45,10 @@ public class expressionbesoinService {
         return _expressionBesoinRepository.findAll();
     }
 
+    public List<ExpressionBesoin> getValidExpressionBesoins(){
+        return _expressionBesoinRepository.getValidExpressionBesoins();
+    }
+
     // Autres méthodes de service nécessaires
 
 }

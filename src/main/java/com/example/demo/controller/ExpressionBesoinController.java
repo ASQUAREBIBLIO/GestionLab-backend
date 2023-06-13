@@ -56,6 +56,11 @@ public class ExpressionBesoinController {
         return ResponseEntity.ok(expressionBesoins);
     }
 
+    @GetMapping("/v")
+    public ResponseEntity<List<ExpressionBesoin>> getValidExpressions(){
+        return new ResponseEntity<>(_expressionBesoinService.getValidExpressionBesoins(), HttpStatus.OK);
+    }
+
     // Autres méthodes de contrôleur nécessaires
 
 }
