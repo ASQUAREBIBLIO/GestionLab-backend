@@ -27,12 +27,8 @@ public class ExpressionBesoinController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ExpressionBesoin> updateExpressionBesoin(@PathVariable Integer id,
-                                                                   @RequestBody ExpressionBesoin expressionBesoin,
-                                                                   @RequestParam Integer membreId,
-                                                                   @RequestParam Integer responsableId,
-                                                                   @RequestParam int typeBesoinId) {
-        ExpressionBesoin updatedExpressionBesoin = _expressionBesoinService.updateExpressionBesoin(expressionBesoin,
-                membreId, responsableId, typeBesoinId);
+                                                                   @RequestBody ExpressionBesoin expressionBesoin) {
+        ExpressionBesoin updatedExpressionBesoin = _expressionBesoinService.updateExpressionBesoin(id, expressionBesoin);
         if (updatedExpressionBesoin != null) {
             return ResponseEntity.ok(updatedExpressionBesoin);
         }

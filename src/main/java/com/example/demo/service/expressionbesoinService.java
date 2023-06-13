@@ -4,16 +4,9 @@ package com.example.demo.service;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.ExpressionBesoin;
-import com.example.demo.model.Membre;
-import com.example.demo.model.Responsable;
-import com.example.demo.model.TypeBesoin;
 import com.example.demo.repository.expressionbesoinRepository;
-import com.example.demo.repository.membreRepository;
 
 import lombok.AllArgsConstructor;
-
-import com.example.demo.repository.ResponsableRepository;
-import com.example.demo.repository.TypeBesoinRepository;
 
 import java.util.List;
 
@@ -22,26 +15,18 @@ import java.util.List;
 public class expressionbesoinService {
 
     private expressionbesoinRepository _expressionBesoinRepository;
-    private membreRepository _membreRepository;
-    private ResponsableRepository responsableRepository;
-    private TypeBesoinRepository typeBesoinRepository;
 
     public ExpressionBesoin createExpressionBesoin(ExpressionBesoin expressionBesoin) {
         return _expressionBesoinRepository.save(expressionBesoin);
     }
 
-    public ExpressionBesoin updateExpressionBesoin(ExpressionBesoin expressionBesoin, Integer membreId,
-                                                  Integer responsableId, int typeBesoinId) {
-        Membre membre = _membreRepository.findById(membreId).orElse(null);
-        Responsable responsable = responsableRepository.findById(responsableId).orElse(null);
-        TypeBesoin typeBesoin = typeBesoinRepository.findById(typeBesoinId).orElse(null);
+    public ExpressionBesoin updateExpressionBesoin(Integer id, ExpressionBesoin expressionBesoin) {
+        ExpressionBesoin e = _expressionBesoinRepository.findById(id).orElse(null);
+        if (e!=null) {
+            e.setDateDem(expressionBesoin.getDateDem());
+            e.setMontantApprox(expressionBesoin.getMontantApprox());
 
-        if (membre != null && responsable != null && typeBesoin != null) {
-            expressionBesoin.setMembre(membre);
-            expressionBesoin.setResponsable(responsable);
-            expressionBesoin.setTypeBesoin(typeBesoin);
-
-            return _expressionBesoinRepository.save(expressionBesoin);
+            return _expressionBesoinRepository.save(e);
         }
 
         return null;
