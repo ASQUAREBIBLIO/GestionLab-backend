@@ -13,4 +13,7 @@ public interface expressionbesoinRepository extends JpaRepository<ExpressionBeso
 	List<ExpressionBesoin> getValidAndTypeBesoin();
 
 
+    @Query("SELECT eb FROM ExpressionBesoin eb WHERE eb.isValid = true")
+    public List<ExpressionBesoin> getValidExpressionBesoins();
+
 }
