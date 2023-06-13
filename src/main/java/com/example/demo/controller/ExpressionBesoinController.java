@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.ExpressionBesoin;
+import com.example.demo.repository.expressionbesoinRepository;
 import com.example.demo.service.expressionbesoinService;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +20,9 @@ public class ExpressionBesoinController {
 
     @Autowired
     private expressionbesoinService _expressionBesoinService;
+    
+    @Autowired
+    private expressionbesoinRepository expressionbesoinrepository;
 
     @PostMapping
     public ResponseEntity<ExpressionBesoin> createExpressionBesoin(@RequestBody ExpressionBesoin expressionBesoin) {
@@ -55,6 +59,13 @@ public class ExpressionBesoinController {
         List<ExpressionBesoin> expressionBesoins = _expressionBesoinService.getAllExpressionBesoins();
         return ResponseEntity.ok(expressionBesoins);
     }
+    
+    @GetMapping("/marche")
+    public ResponseEntity<List<ExpressionBesoin>> getValidExpressionBesoinsByType() {
+        List<ExpressionBesoin> expressionBesoins = expressionbesoinrepository.getValidAndTypeBesoin();
+        return ResponseEntity.ok(expressionBesoins);
+    }
+
 
     // Autres méthodes de contrôleur nécessaires
 
