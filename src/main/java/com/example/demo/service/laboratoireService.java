@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 
 import com.example.demo.model.Laboratoire;
 import com.example.demo.model.Membre;
+import com.example.demo.model.MembreUcaRech;
 
 @Service
 @AllArgsConstructor
@@ -64,5 +65,17 @@ public class laboratoireService {
         laboratoire.getMembres().add(membre);
 
         return _laboratoireRepository.save(laboratoire);
+    }
+
+    public double getLaboratoireDotationUcaRech(Integer labId){
+        double labDotation = 0.0;
+        Laboratoire laboratoire = _laboratoireRepository.findById(labId).get();
+        for(Membre membre: laboratoire.getMembres()){
+            for(MembreUcaRech membreUcaRech: membre.getMembreUcaRechs()){
+                labDotation += membreUcaRech.getDotationMembre();
+            }
+        }
+
+        return labDotation;
     }
 }

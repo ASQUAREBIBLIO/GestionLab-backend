@@ -26,21 +26,8 @@ public class expressionbesoinService {
     private ResponsableRepository responsableRepository;
     private TypeBesoinRepository typeBesoinRepository;
 
-    public ExpressionBesoin createExpressionBesoin(ExpressionBesoin expressionBesoin, Integer membreId,
-                                                  Integer responsableId, int typeBesoinId) {
-        Membre membre = _membreRepository.findById(membreId).orElse(null);
-        Responsable responsable = responsableRepository.findById(responsableId).orElse(null);
-        TypeBesoin typeBesoin = typeBesoinRepository.findById(typeBesoinId).orElse(null);
-
-        if (membre != null && responsable != null && typeBesoin != null) {
-            expressionBesoin.setMembre(membre);
-            expressionBesoin.setResponsable(responsable);
-            expressionBesoin.setTypeBesoin(typeBesoin);
-
-            return _expressionBesoinRepository.save(expressionBesoin);
-        }
-
-        return null;
+    public ExpressionBesoin createExpressionBesoin(ExpressionBesoin expressionBesoin) {
+        return _expressionBesoinRepository.save(expressionBesoin);
     }
 
     public ExpressionBesoin updateExpressionBesoin(ExpressionBesoin expressionBesoin, Integer membreId,

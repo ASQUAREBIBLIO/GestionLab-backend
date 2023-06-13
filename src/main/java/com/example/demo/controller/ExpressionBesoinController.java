@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.ExpressionBesoin;
 import com.example.demo.service.expressionbesoinService;
+
+import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,22 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/expressionBesoins")
+@AllArgsConstructor
 public class ExpressionBesoinController {
 
     @Autowired
-    private expressionbesoinService expressionBesoinService;
+    private expressionbesoinService _expressionBesoinService;
 
     @PostMapping
-    public ResponseEntity<ExpressionBesoin> createExpressionBesoin(@RequestBody ExpressionBesoin expressionBesoin,
-                                                                   @RequestParam Integer membreId,
-                                                                   @RequestParam Integer responsableId,
-                                                                   @RequestParam int typeBesoinId) {
-        ExpressionBesoin createdExpressionBesoin = expressionBesoinService.createExpressionBesoin(expressionBesoin,
-                membreId, responsableId, typeBesoinId);
-        if (createdExpressionBesoin != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdExpressionBesoin);
-        }
-        return ResponseEntity.badRequest().build();
+    public ResponseEntity<ExpressionBesoin> createExpressionBesoin(@RequestBody ExpressionBesoin expressionBesoin) {
+       return new ResponseEntity<>(_expressionBesoinService.createExpressionBesoin(expressionBesoin), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -35,7 +31,7 @@ public class ExpressionBesoinController {
                                                                    @RequestParam Integer membreId,
                                                                    @RequestParam Integer responsableId,
                                                                    @RequestParam int typeBesoinId) {
-        ExpressionBesoin updatedExpressionBesoin = expressionBesoinService.updateExpressionBesoin(expressionBesoin,
+        ExpressionBesoin updatedExpressionBesoin = _expressionBesoinService.updateExpressionBesoin(expressionBesoin,
                 membreId, responsableId, typeBesoinId);
         if (updatedExpressionBesoin != null) {
             return ResponseEntity.ok(updatedExpressionBesoin);
@@ -45,13 +41,13 @@ public class ExpressionBesoinController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteExpressionBesoin(@PathVariable Integer id) {
-        expressionBesoinService.deleteExpressionBesoin(id);
+        _expressionBesoinService.deleteExpressionBesoin(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ExpressionBesoin> getExpressionBesoinById(@PathVariable Integer id) {
-        ExpressionBesoin expressionBesoin = expressionBesoinService.getExpressionBesoinById(id);
+        ExpressionBesoin expressionBesoin = _expressionBesoinService.getExpressionBesoinById(id);
         if (expressionBesoin != null) {
             return ResponseEntity.ok(expressionBesoin);
         }
@@ -60,7 +56,7 @@ public class ExpressionBesoinController {
 
     @GetMapping
     public ResponseEntity<List<ExpressionBesoin>> getAllExpressionBesoins() {
-        List<ExpressionBesoin> expressionBesoins = expressionBesoinService.getAllExpressionBesoins();
+        List<ExpressionBesoin> expressionBesoins = _expressionBesoinService.getAllExpressionBesoins();
         return ResponseEntity.ok(expressionBesoins);
     }
 

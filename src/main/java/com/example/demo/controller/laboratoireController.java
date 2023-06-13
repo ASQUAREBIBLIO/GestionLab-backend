@@ -74,4 +74,9 @@ public class laboratoireController {
         return new ResponseEntity<>(laboratoire, HttpStatus.CREATED);
     }
 
+    @GetMapping("/{id}/dotations")
+    public ResponseEntity<?> getLaboratoireDotationUcaRech(@PathVariable("id") Integer labId){
+        return new ResponseEntity<>(_laboratoireService.getLaboratoireDotationUcaRech(labId), HttpStatus.OK);
+    }
+
 }

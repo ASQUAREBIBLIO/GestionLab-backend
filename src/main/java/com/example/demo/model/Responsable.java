@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
@@ -36,6 +38,7 @@ public class Responsable {
 
     
     @OneToMany(mappedBy = "responsable")
+    @JsonIgnore
     private List<ExpressionBesoin> expressionsBesoin;
 
     @ManyToOne

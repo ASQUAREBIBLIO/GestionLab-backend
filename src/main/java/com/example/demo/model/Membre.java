@@ -56,6 +56,7 @@ public class Membre {
     private Laboratoire laboratoire;
     
     @OneToMany(mappedBy = "membre")
+    @JsonIgnore
     private List<ExpressionBesoin> expressionsBesoin;
 
     @ManyToOne
