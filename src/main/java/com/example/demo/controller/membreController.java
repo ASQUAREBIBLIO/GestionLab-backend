@@ -82,4 +82,9 @@ public class membreController {
         return new ResponseEntity<Membre>(_membreService.setMembreAsDirector(membreId, isDirector), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/e/total")
+    public ResponseEntity<?> getSumExpression(@PathVariable("id") Integer membreId){
+        return new ResponseEntity<>(_membreService.getSumExpressionBesoins(membreId), HttpStatus.OK);
+    }
+
 }
