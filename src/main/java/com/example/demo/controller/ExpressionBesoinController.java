@@ -83,7 +83,7 @@ public class ExpressionBesoinController {
         return new ResponseEntity<>(_expressionBesoinService.getInvalidExpressionBesoins(), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/v")
+    @GetMapping("/{id}/v")
     public ResponseEntity<ExpressionBesoin> valider(@PathVariable("id") Integer eId){
         ExpressionBesoin e = _expressionBesoinService.getExpressionBesoinById(eId);
         return new ResponseEntity<ExpressionBesoin>(_expressionBesoinService.valider(e), HttpStatus.OK);
