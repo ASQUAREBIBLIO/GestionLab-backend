@@ -78,6 +78,17 @@ public class ExpressionBesoinController {
         return new ResponseEntity<>(_expressionBesoinService.getValidExpressionBesoins(), HttpStatus.OK);
     }
 
+     @GetMapping("/inv")
+    public ResponseEntity<List<ExpressionBesoin>> getInvalidExpressions(){
+        return new ResponseEntity<>(_expressionBesoinService.getInvalidExpressionBesoins(), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/v")
+    public ResponseEntity<ExpressionBesoin> valider(@PathVariable("id") Integer eId){
+        ExpressionBesoin e = _expressionBesoinService.getExpressionBesoinById(eId);
+        return new ResponseEntity<ExpressionBesoin>(_expressionBesoinService.valider(e), HttpStatus.OK);
+    }
+
     // Autres méthodes de contrôleur nécessaires
 
 }

@@ -49,6 +49,15 @@ public class expressionbesoinService {
         return _expressionBesoinRepository.getValidExpressionBesoins();
     }
 
+    public List<ExpressionBesoin> getInvalidExpressionBesoins(){
+        return _expressionBesoinRepository.getInvalidExpressionBesoins();
+    }
+
+    public ExpressionBesoin valider(ExpressionBesoin e){
+        e.setValid(true);
+        return _expressionBesoinRepository.save(e);
+    }
+
     // Autres méthodes de service nécessaires
 
 }
