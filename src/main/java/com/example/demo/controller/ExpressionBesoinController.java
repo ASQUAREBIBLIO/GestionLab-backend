@@ -65,6 +65,12 @@ public class ExpressionBesoinController {
         List<ExpressionBesoin> expressionBesoins = expressionbesoinrepository.getValidAndTypeBesoin();
         return ResponseEntity.ok(expressionBesoins);
     }
+    
+    @GetMapping("/finance")
+    public ResponseEntity<List<ExpressionBesoin>> getValidExpressionBesoinsByTypeFinance() {
+        List<ExpressionBesoin> expressionBesoins = expressionbesoinrepository.getValidAndTypeBesoinFinance();
+        return ResponseEntity.ok(expressionBesoins);
+    }
 
 
     @GetMapping("/v")
