@@ -9,7 +9,7 @@ import com.example.demo.model.ExpressionBesoin;
 
 public interface expressionbesoinRepository extends JpaRepository<ExpressionBesoin, Integer>{
 	
-    @Query("select e from ExpressionBesoin e join e.typeBesoin t where t.id = 2 and e.isValid = true")
+    @Query("select e from ExpressionBesoin e join e.typeBesoin t where t.id = 1 and e.isValid = true")
 	List<ExpressionBesoin> getValidAndTypeBesoin();
 
 
@@ -19,7 +19,7 @@ public interface expressionbesoinRepository extends JpaRepository<ExpressionBeso
     @Query("SELECT eb FROM ExpressionBesoin eb WHERE eb.isValid = false")
     public List<ExpressionBesoin> getInvalidExpressionBesoins();
     
-    @Query("select e from ExpressionBesoin e join e.typeBesoin t where t.id = 1 and e.isValid = true")
+    @Query("select e from ExpressionBesoin e join e.typeBesoin t where t.id = 2 and e.isValid = true")
     public List<ExpressionBesoin> getValidAndTypeBesoinFinance();
 
 }

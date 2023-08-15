@@ -26,6 +26,8 @@ public class expressionbesoinService {
         if (e!=null) {
             e.setDateDem(expressionBesoin.getDateDem());
             e.setMontantApprox(expressionBesoin.getMontantApprox());
+            e.setMontantEffet(expressionBesoin.getMontantEffet());
+            e.setDateEffet(expressionBesoin.getDateEffet());
 
             return _expressionBesoinRepository.save(e);
         }
